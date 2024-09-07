@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory Management System</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('hello.jpeg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        header {
+            background-color: rgb(73, 31, 113);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        header h1 {
+            margin: 0;
+            color: white;
+            animation: textPop 1s ease-in-out;
+        }
+
+        @keyframes textPop {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        header img {
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            width: 80px;
+            height: auto;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        main {
+            padding: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px;
+            width: 150px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: rgb(73, 31, 113);
+        }
+
+        input[type="file"] {
+            padding: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #5555;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: rgb(73, 31, 113);
+            transform: scale(1.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            animation: tableSlide 1s ease-out;
+        }
+
+        @keyframes tableSlide {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        th, td {
+            border: 1px solid #949090;
+            padding: 12px;
+            text-align: left;
+            transition: background-color 0.3s ease;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td img {
+            width: 80px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        td img:hover {
+            transform: scale(1.1);
+        }
+
+        footer {
+            background-color: #d22da9;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: white;
+            margin-top: 20px;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        footer a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: text-decoration 0.3s ease;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="00000.png" alt="Logo"> <!-- Replace with your logo URL -->
+        <h1>Inventory Management System</h1>
+    </header>
+
+    <main>
+        <!-- Input fields to add new products -->
+        <div class="input-container">
+            <input type="text" id="productName" placeholder="Product Name">
+            <input type="number" id="productQuantity" placeholder="Quantity">
+            <input type="number" id="productPrice" placeholder="Price">
+            <input type="file" id="productImage" accept="image/*">
+            <button id="addProductBtn">Add Product</button>
+            <button id="saveDataBtn">Save Inventory</button>
+        </div>
+
+        <!-- Inventory Table -->
+        <table id="inventoryTable">
+            <tr>
+                <th>Image</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+            <!-- Example product rows -->
+            <tr>
+                <td><img src="130.jpeg" alt="Crochet Keychain"></td>
+                <td>Crochet Keychain</td>
+                <td>20</td>
+                <td>$1.00</td>
+            </tr>
+            <tr>
+                <td><img src="150.jpeg" alt="Crochet Bag"></td>
+                <td>Crochet Bag</td>
+                <td>15</td>
+                <td>$5.00</td>
+            </tr>
+            <tr>
+                <td><img src="170.jpeg" alt="Crochet Hair Clip"></td>
+                <td>Crochet Hair Clip</td>
+                <td>30</td>
+                <td>$2.00</td>
+            </tr>
+        </table>
+    </main>
+
+    <footer>
+        <p>Farida Bano | Farida123@gmail.com | 2024 </p>
+        <p>
+            Follow us:
+            <a href="https://youtube.com/@artcrft1160?si=EOQcWGTYRVzbBN45" target="_blank">YouTube</a>
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        </p>
+    </footer>
+
+    <script>
+        const productNameInput = document.getElementById("productName");
+        const productQuantityInput = document.getElementById("productQuantity");
+        const productPriceInput = document.getElementById("productPrice");
+        const productImageInput = document.getElementById("productImage");
+        const addProductBtn = document.getElementById("addProductBtn");
+        const saveDataBtn = document.getElementById("saveDataBtn");
+        const inventoryTable = document.getElementById("inventoryTable");
+
+        addProductBtn.addEventListener("click", () => {
+            const productName = productNameInput.value.trim();
+            const productQuantity = parseInt(productQuantityInput.value);
+            const productPrice = parseFloat(productPriceInput.value);
+            const productImage = productImageInput.files[0];
+
+            // Input validation
+            if (!productName) {
+                alert("Product name cannot be empty.");
+                return;
+            }
+            if (isNaN(productQuantity) || productQuantity <= 0) {
+                alert("Quantity must be a positive number.");
+                return;
+            }
+            if (isNaN(productPrice) || productPrice <= 0) {
+                alert("Price must be a valid number.");
+                return;
+            }
+            if (!productImage) {
+                alert("Please select an image.");
+                return;
+            }
+
+            // Create a new row for the table
+            const newRow = inventoryTable.insertRow();
+            const imgCell = newRow.insertCell(0);
+            const nameCell = newRow.insertCell(1);
+            const quantityCell = newRow.insertCell(2);
+            const priceCell = newRow.insertCell(3);
+
+            // Display the product image
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.createElement("img");
+                img.src = e.target.result;
+                imgCell.appendChild(img);
+            };
+            reader.readAsDataURL(productImage);
+
+            // Add product details to table
+            nameCell.textContent = productName;
+            quantityCell.textContent = productQuantity.toString();
+            priceCell.textContent = `$${productPrice.toFixed(2)}`;
+
+            // Clear input fields
+            productNameInput.value = "";
+            productQuantityInput.value = "";
+            productPriceInput.value = "";
+            productImageInput.value = "";
+        });
+
+        saveDataBtn.addEventListener("click", () => {
+            const tableRows = Array.from(inventoryTable.rows);
+            const data = tableRows.map(row => {
+                const cells = Array.from(row.cells);
+                return cells.map(cell => cell.textContent).join(",");
+            }).join("\n");
+
+            const blob = new Blob([data], { type: "text/csv" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "inventory.csv";
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>
